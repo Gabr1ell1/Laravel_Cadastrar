@@ -26,8 +26,8 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-dark">
           <li><a class="dropdown-item" href="{{ route('cadastrar-produto')}}">Cadastrar</a></li>
-            <li><a class="dropdown-item" href="{{ route('listar-produto', ['id' => 2])}}">Listar</a></li>
-            <li><a class="dropdown-item" href="{{ route('editar-produto', ['id' => 2])}}">Atualizar</a></li>
+            <li><a class="dropdown-item" href="{{ route('listar-produto', ['id' => 1])}}">Listar</a></li>
+            <li><a class="dropdown-item" href="{{ route('editar-produto', ['id' => 1])}}">Atualizar</a></li>
             <li><a class="dropdown-item" href="#">Deletar</a></li>
           </ul>
         </li>
