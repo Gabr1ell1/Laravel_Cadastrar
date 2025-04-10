@@ -28,7 +28,11 @@
           <li><a class="dropdown-item" href="{{ route('cadastrar-produto')}}">Cadastrar</a></li>
             <li><a class="dropdown-item" href="{{ route('listar-produto')}}">Listar</a></li>
             <li><a class="dropdown-item" href="{{ route('editar-produto', ['id' => 1])}}">Atualizar</a></li>
+<<<<<<< HEAD
             <li><a class="dropdown-item" href="{{ route('excluir-produto', ['id' => 1])}}">Deletar</a></li>
+=======
+            <li><a class="dropdown-item" href="#">Deletar</a></li>
+>>>>>>> bd56a3d66b3890c91de36313bd54b175a25a34b0
           </ul>
         </li>
       </ul>
