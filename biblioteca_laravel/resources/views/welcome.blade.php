@@ -27,15 +27,15 @@
           <ul class="dropdown-menu dropdown-menu-dark">
           <li><a class="dropdown-item" href="{{ route('cadastrar-produto')}}">Cadastrar</a></li>
             <li><a class="dropdown-item" href="{{ route('listar-produto')}}">Listar</a></li>
-            <li><a class="dropdown-item" href="{{ route('editar-produto', ['id' => 2])}}">Atualizar</a></li>
-            <li><a class="dropdown-item" href="#">Deletar</a></li>
+            <li><a class="dropdown-item" href="{{ route('editar-produto', ['id' => 1])}}">Atualizar</a></li>
+            <li><a class="dropdown-item" href="{{ route('excluir-produto', ['id' => 1])}}">Deletar</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
+<br>
   <div class="text">
   <p><h4>Cadastre Novos Produtos!</h4>
     Sistema de cadastro de produtos 
@@ -57,6 +57,12 @@
     </div>
     <br> 
     <button  class="btn btn-primary" >Cadastrar</button> 
+    <br><br>
+      @if (session('success'))
+     <div class="alert alert-success">
+      {{ session('success') }}
+     </div>
+    @endif
   </form> 
 
 

@@ -19,14 +19,12 @@ Route::post('/cadastrar-produto', function (Request $request) {
     'valor' => $request->valor, 
     'quantidade' => $request->quantidade 
 ]); 
-return redirect('/')->with('sucess', 'Produto cadastrado com sucesso!');
-
+return redirect()->back()->with('success', 'Produto cadastrado com sucesso!');
 });
 
-Route::get('/listar-produto/{id}', function ($id) { 
+Route::get('/listar-produto', function () { 
     //dd(Produto::find($id));
-    
-    $produto = Produto::find($id);
+    $produto = Produto::all();
     return view('listar', ['produto' => $produto]);
 
 }) ->name('listar-produto');
@@ -53,18 +51,24 @@ Route::post('/editar-produto/{id}', function (Request $request, $id)
 
 });
 
-Route::get('/excluir-produto/{id}', function ($id) { 
-    //dd(Produto::find($id));
-    
+Route::get('/excluir-produto/{id}', function ($id) {
     $produto = Produto::find($id);
-    $produto->delete();
 
-    if($produto){
-        $produto->delete();
-        return redirect('/')->with('sucess', 'Produto excluido com sucesso!');
-    }else{
-        return redirect('/')->with('error', 'Produto não encontrado');
+    if (!$produto) {
+        return redirect('/')->with('error', 'Produto não encontrado!');
     }
+
+    return view('excluir', compact('produto'));
 })->name('excluir-produto');
 
 
+Route::delete('/excluir-produto/{id}', function ($id) {
+    $produto = Produto::find($id);
+
+    if ($produto) {
+        $produto->delete();
+        return redirect('/')->with('success', 'Produto excluído com sucesso!');
+    }
+
+    return redirect('/')->with('error', 'Produto não encontrado!');
+})->name('confirmar-exclusao');

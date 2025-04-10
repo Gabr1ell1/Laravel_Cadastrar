@@ -9,6 +9,7 @@
     body{font-family: Arial, Helvetica, sans-serif;}
     form{margin-left: 20px;margin-right: 30px;}
     .text{margin-left: 20px;}
+    .info{color: gray; font-size: small;margin: 20px;}
   </style>
 </head> 
 <body> 
@@ -26,22 +27,22 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-dark">
           <li><a class="dropdown-item" href="{{ route('cadastrar-produto')}}">Cadastrar</a></li>
-            <li><a class="dropdown-item" href="{{ route('listar-produto', ['id' => 2])}}">Listar</a></li>
-            <li><a class="dropdown-item" href="{{ route('editar-produto', ['id' => 2])}}">Atualizar</a></li>
-            <li><a class="dropdown-item" href="#">Deletar</a></li>
+            <li><a class="dropdown-item" href="{{ route('listar-produto')}}">Listar</a></li>
+            <li><a class="dropdown-item" href="{{ route('editar-produto', ['id' => 1])}}">Atualizar</a></li>
+            <li><a class="dropdown-item" href="{{ route('excluir-produto', ['id' => 1])}}">Deletar</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
+<br><br>
   <div class="text">
-  <p><h4>Editar Produtos!</h4>
-   Edite aqui seus produtos. 
-  </p> 
+    <p><h4>Editar Produtos!</h4>Edite aqui seus produtos.</p> 
   </div>
-  <form action="/editar-produto/{{$produto-> id}}" method="post">
+
+  @if(!is_null($produto))
+  <form action="/editar-produto/{{$produto->id}}" method="post">
     @csrf 
     <div class="form-floating">
       <input type="text" class="form-control" name="nome" value="{{ $produto->nome}}"> 
@@ -56,9 +57,19 @@
       <label for="lblQuantidade">Quantidade: </label> 
     </div>
     <br> 
+    
+    {{-- Navegação entre produtos --}}
+    <div class="mt-3">
+      <a href="{{ route('editar-produto', ['id' => $produto->id - 1]) }}" class="btn btn-secondary">Anterior</a>
+      <a href="{{ route('editar-produto', ['id' => $produto->id + 1]) }}" class="btn btn-primary">Próximo</a>
+    </div>
+    <br>
     <button  class="btn btn-primary" >Atualizar</button> 
+    @else
+    <p class="info">Nenhum produto cadastrado
+    <a href="{{ route('editar-produto', ['id' => 1]) }}" class="btn btn-secondary">Anterior</a></p>
+    @endif
     </form>
-
    
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
